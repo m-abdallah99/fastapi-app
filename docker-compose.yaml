@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    command: uvicorn app.app:app --host 0.0.0.0 --port 8000 --reload
+    container_name: fastapi_app
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+      - redis
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/default.conf:ro
+    depends_on:
+      - web
+    networks:
+      - app-network
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      DATABASE_URL: postgresql://user:password@postgres:5432/mydb
+
+    networks:
+      - app-network
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  redis:
+    image: redis:alpine
+    container_name: radis_cache
+    networks:
+      - app-network
+
+networks:
+  app-network:
+  
+volumes:
+  postgres:
