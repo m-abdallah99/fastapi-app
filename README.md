@@ -4,12 +4,12 @@ Build and deploy a production-ready containerized Python web application with Fa
 
 
 # Features
--FastAPI with async PostgreSQL + Redis
--Multi-stage Docker builds
--Minimal Alpine images
--Nginx as reverse proxy
--Security scanning with Trivy
--Volume-backed PostgreSQL persistence
+- FastAPI with async PostgreSQL + Redis
+- Multi-stage Docker builds
+- Minimal Alpine images
+- Nginx as reverse proxy
+- Security scanning with Trivy
+- Volume-backed PostgreSQL persistence
 
 # Prerequisites
 - Docker
