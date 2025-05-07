@@ -45,8 +45,8 @@ API: http://localhost:8000/
 
 
 # Security Scan
--Run Trivy: "trivy image fastapi-app_web"
--open trivy-report.txt file to see the results 
+- Run Trivy: "trivy image fastapi-app_web"
+- open trivy-report.txt file to see the results 
 
 **results**
 fastapi-app-web (alpine 3.21.3)
